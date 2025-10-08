@@ -1,6 +1,5 @@
 {
-  "homepage": "https://reduction-choi.github.io/Japanese_vocab/",
-  "name": "japanese_vocab",
+  "name": "retry",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
