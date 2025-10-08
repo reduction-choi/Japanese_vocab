@@ -1,1 +1,3 @@
 https://jisho.org/api/v1/search/words?keyword=
+https://docs.api.wanikani.com/20170710/#introduction
+acd4892e-0f94-4d49-ab83-e15049ea0f96

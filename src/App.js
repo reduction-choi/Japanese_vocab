@@ -1,50 +1,41 @@
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
 import { useState } from 'react';
 function App() {
   const [text, setText] = useState(null);
-  function increment(number) {
-    const promise = new Promise((resolve, reject) => {
-      // resolve는 성공, reject는 실패
-      setTimeout(() => {
-        const result = number + 10;
-        if (result > 50) { // 50보다 높으면 에러 발생시키기
-          const e = new Error('NumberTooBig');
-          return reject(e);
-        }
-        resolve(result); // number 값에 +10 후 성공 처리
-      }, 1000)
-    });
-    return promise;
-  }
   const onClick = async () => {
-    try { // try/catch 구문을 사용하여 에러를 처리합니다.
-    let result = await increment(0);
-    console.log(result);
-    setText(result);
-    result = await increment(result);
-    console.log(result);
-    setText(result);
-    result = await increment(result);
-    console.log(result);
-    setText(result);
-    result = await increment(result);
-    console.log(result);
-    setText(result);
-    result = await increment(result);
-    console.log(result);
-    setText(result);
-    result = await increment(result);
-    console.log(result);
-    setText(result);
-    } catch (e) {
+    const token = 'acd4892e-0f94-4d49-ab83-e15049ea0f96';
+    const headers = new Headers({
+      Authorization: 'Bearer ' + token,
+    });
+    try{
+      let apidata = await axios('https://api.wanikani.com/v2/subjects',{
+        method: 'GET',
+        headers: headers
+      });
+      setText(apidata.data);
+      // let grab = (endpoint) => {
+      // fetch('https://api.wanikani.com/v2/' + endpoint, {
+      //     method: 'GET',
+      //     headers: headers
+      //   }
+      // )
+      //   .then(response => response.json())
+      //   .then(responseBody => {
+      //     console.log(responseBody);
+      //     setText(responseBody);
+      //   });
+      // }
+      // grab("subjects");
+    }
+    catch(e){
       console.log(e);
     }
   }
   return (
     <div>
       <button onClick={onClick}>시작</button>
-      <h1>{text}</h1>
+      {text && <textarea rows={7} value={JSON.stringify(text, null, 2)} readOnly={true} />}
     </div>
   );
 }
