@@ -20,7 +20,6 @@ function App() {
         method: 'GET',
         headers: headers
       });
-      console.log(apidata.data["data"][0]["data"]["meanings"][0]["meaning"]);
       for(const wordinfo of apidata.data["data"]){
         const object = {
           meaning: wordinfo["data"]["meanings"]["0"]["meaning"],
