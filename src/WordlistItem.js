@@ -1,4 +1,5 @@
-const WordlistItem = () => {
+const WordlistItem = ({word}) => {
+    const {meaning, hiragana, _} = word;
     return (
         <div className="WordlistItem">
             <div>
@@ -10,5 +11,4 @@ const WordlistItem = () => {
         </div>
     )
 }
-
 export default WordlistItem;

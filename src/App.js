@@ -1,12 +1,15 @@
+import Wordlist from './Wordlist';
 import axios from 'axios';
 import './App.css';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 function App() {
   const [words, setWords] = useState([]);
+  const nextID = useRef(0);
+  useEffect(() => console.log(words), [words]);
   const appendWords = (element) => {
-    setWords(words + element);
-    //this may not work. Look for the book to solve prob.
-  }
+    setWords(prevWords => prevWords.concat(element));
+    nextID.currnet = nextID.currnet + 1;
+  };
   const onClick = async () => {
     const token = 'acd4892e-0f94-4d49-ab83-e15049ea0f96';
     const headers = new Headers({
@@ -17,11 +20,12 @@ function App() {
         method: 'GET',
         headers: headers
       });
-      console.log(apidata.data["data"]);
+      console.log(apidata.data["data"][0]["data"]["meanings"][0]["meaning"]);
       for(const wordinfo of apidata.data["data"]){
         const object = {
-          meaning: wordinfo["data"]["meanings"][0]["meaning"],
-          hiragana: wordinfo["data"]["readings"][0]["reading"]
+          meaning: wordinfo["data"]["meanings"]["0"]["meaning"],
+          hiragana: wordinfo["data"]["readings"]["0"]["reading"],
+          id: nextID.currnet
         };
         appendWords(object);
       }
