@@ -8,7 +8,7 @@ import DBConnection from './DBConnection';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/>
+    <DBConnection/>
   </React.StrictMode>
 );
 
