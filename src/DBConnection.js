@@ -15,6 +15,10 @@ function DBConnection(){
                 .then(res => res.json())
                 .then(data => console.log(data));
 
+            fetch("https://crispy-space-acorn-5666vwggqg4hvjj9-3001.app.github.dev/api/connect")
+                .then(res => res.json())
+                .then(data => console.log(data));
+
             // const mongoose = require('mongoose');
             // mongoose.connect('mongodb+srv://hanwon0713:5RSaziBn69sxqyje@japanese-vocab.wuczewm.mongodb.net/?retryWrites=true&w=majority&appName=Japanese-vocab',{
             //     useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
