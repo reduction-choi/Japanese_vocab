@@ -12,3 +12,5 @@ mongosh "mongodb+srv://hanwon0713:5RSaziBn69sxqyje@japanese-vocab.wuczewm.mongod
 
 2. mongodb 명령 하달. 하단 링크 참조
 https://sjh836.tistory.com/100
+mongodb document, fields, collections, database 개념
+https://javacpro.tistory.com/66
