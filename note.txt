@@ -5,3 +5,10 @@ acd4892e-0f94-4d49-ab83-e15049ea0f96
 db
 ID: hanwon0713
 PW: 5RSaziBn69sxqyje
+
+mongodb 사용법
+1. mongosh로 shell 에서 mongodb에 접근
+mongosh "mongodb+srv://hanwon0713:5RSaziBn69sxqyje@japanese-vocab.wuczewm.mongodb.net/?retryWrites=true&w=majority&appName=Japanese-vocab"
+
+2. mongodb 명령 하달. 하단 링크 참조
+https://sjh836.tistory.com/100
