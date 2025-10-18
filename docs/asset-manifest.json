@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Japanese_vocab/static/css/main.f855e6bc.css",
-    "main.js": "/Japanese_vocab/static/js/main.cdc37768.js",
+    "main.js": "/Japanese_vocab/static/js/main.af6d9968.js",
     "static/js/453.113daebe.chunk.js": "/Japanese_vocab/static/js/453.113daebe.chunk.js",
     "index.html": "/Japanese_vocab/index.html",
     "main.f855e6bc.css.map": "/Japanese_vocab/static/css/main.f855e6bc.css.map",
-    "main.cdc37768.js.map": "/Japanese_vocab/static/js/main.cdc37768.js.map",
+    "main.af6d9968.js.map": "/Japanese_vocab/static/js/main.af6d9968.js.map",
     "453.113daebe.chunk.js.map": "/Japanese_vocab/static/js/453.113daebe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.cdc37768.js"
+    "static/js/main.af6d9968.js"
   ]
 }
