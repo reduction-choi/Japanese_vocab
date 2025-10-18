@@ -6,6 +6,12 @@ db
 ID: hanwon0713
 PW: 5RSaziBn69sxqyje
 
+github codespace에서 server.js 실행 시 주소
+https://crispy-space-acorn-5666vwggqg4hvjj9-3001.app.github.dev/api/connect
+
+render 에서 server.js 실행 시 주소
+https://japanese-vocab-4eoh.onrender.com/api/hello
+
 mongodb 사용법
 1. mongosh로 shell 에서 mongodb에 접근
 mongosh "mongodb+srv://hanwon0713:5RSaziBn69sxqyje@japanese-vocab.wuczewm.mongodb.net/?retryWrites=true&w=majority&appName=Japanese-vocab"

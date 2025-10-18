@@ -2,11 +2,11 @@ function DBConnection(){
     async function connect() {
         try {
             console.log("working");
-            fetch("https://crispy-space-acorn-5666vwggqg4hvjj9-3001.app.github.dev/api/hello")
+            fetch("https://japanese-vocab-4eoh.onrender.com/api/hello")
                 .then(res => res.json())
                 .then(data => console.log(data));
 
-            fetch("https://crispy-space-acorn-5666vwggqg4hvjj9-3001.app.github.dev/api/connect")
+            fetch("https://japanese-vocab-4eoh.onrender.com/api/connect")
                 .then(res => res.json())
                 .then(data => console.log(data));
         } catch(e) {
