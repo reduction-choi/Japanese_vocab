@@ -5,7 +5,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://crispy-space-acorn-5666vwggqg4hvjj9-3000.app.github.dev","https://reduction-choi.github.io/Japanese_vocab/"],
+    origin: ["https://crispy-space-acorn-5666vwggqg4hvjj9-3000.app.github.dev","https://reduction-choi.github.io"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
