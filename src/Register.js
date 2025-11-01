@@ -17,7 +17,7 @@ function Register(){
         });
     }
     const handleClick = (e) => {
-        fetch("https://crispy-space-acorn-5666vwggqg4hvjj9-3001.app.github.dev/api/register", {
+        fetch("https://japanese-vocab-4eoh.onrender.com/api/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

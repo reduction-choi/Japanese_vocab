@@ -50,8 +50,8 @@ app.post("/api/register", async (req, res) => {
 })
 const startServer = async () => {
   try{
-  await mongoose.connect('mongodb+srv://hanwon0713:5RSaziBn69sxqyje@japanese-vocab.wuczewm.mongodb.net/japanese_vocab?retryWrites=true&w=majority&appName=Japanese-vocab')
-  app.listen(3001, console.log("Server running on port 3001"));
+    await mongoose.connect('mongodb+srv://hanwon0713:5RSaziBn69sxqyje@japanese-vocab.wuczewm.mongodb.net/japanese_vocab?retryWrites=true&w=majority&appName=Japanese-vocab')
+    app.listen(3001, console.log("Server running on port 3001"));
   }
   catch(e){
     console.log(e);
