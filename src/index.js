@@ -2,16 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import DBConnection from './DBConnection';
 import reportWebVitals from './reportWebVitals';
-import Login from './Login';
+import LoginRegister from './LoginRegister';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DBConnection/>
     <App/>
-    <Login/>
+    <LoginRegister/>
   </React.StrictMode>
 );
 
