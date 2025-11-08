@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login(){
+function Login({setStates}){
     const [values, setValues] = useState({
         id: "",
         passwd: ""
@@ -27,8 +27,21 @@ function Login(){
             })
         })
         .then(res => res.json())
-        .then(data => console.log(data));
-
+        .then(data => {
+            console.log(data);
+            if(data.success === true){
+                setStates(prevStates => {
+                    return {
+                        ...prevStates,
+                        user: values.id
+                    };
+                });
+            }
+        });
+        setValues({
+            id: "",
+            passwd: ""
+        });
     }
     return (
         <div>
