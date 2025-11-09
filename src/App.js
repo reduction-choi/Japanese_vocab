@@ -12,7 +12,7 @@ function App() {
   });
   return (
     <div>
-      <Menu setStates={setStates}/>
+      <Menu states={states} setStates={setStates}/>
       {(()=>{
         if(states.menu === "main"){
           return <Main states={states}/>
