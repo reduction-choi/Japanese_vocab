@@ -17,7 +17,7 @@ function Register(setStates){
         });
     }
     const handleClick = (e) => {
-        fetch("https://japanese-vocab-4eoh.onrender.com/api/register", {
+        fetch("https://japanese-vocab-backend.onrender.com/api/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

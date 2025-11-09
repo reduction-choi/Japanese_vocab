@@ -16,7 +16,7 @@ function Login({setStates}){
         });
     }
     const handleClick = (e) => {
-        fetch("https://japanese-vocab-4eoh.onrender.com/api/login", {
+        fetch("https://japanese-vocab-backend.onrender.com/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -49,7 +49,7 @@ function Login({setStates}){
     return (
         <div>
             <h1>ID: </h1>
-            <input type="text" name="id" value={values.title} onChange={handleChange} />
+            <input type="text" name="id" value={values.id} onChange={handleChange} />
             <h1>PW: </h1>
             <input type="text" name="passwd" value={values.passwd} onChange={handleChange} />
             <button onClick={handleClick}>Login</button>
