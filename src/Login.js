@@ -26,17 +26,20 @@ function Login({setStates}){
                 passwd: values.passwd
             })
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.success === true){
-                setStates(prevStates => {
-                    return {
-                        ...prevStates,
-                        user: values.id
-                    };
-                });
+        .then(res => {
+            if(!res.ok){
+                throw new Error("ID/PW invalid");
             }
+            return res.json();
+        })
+        .then(data => {
+            localStorage.setItem("token", data.token);
+            setStates(prevStates => {
+                return {
+                    menu: "main",
+                    user: values.id
+                };
+            });
         });
         setValues({
             id: "",

@@ -9,6 +9,7 @@ function Menu({states, setStates}){
         });
     }
     const handleLogout = () => {
+        localStorage.removeItem("token");
         setStates(prevStates => {
             return {
                 menu: "main",
