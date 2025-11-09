@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login(){
+function Login({setStates}){
     const [values, setValues] = useState({
         id: "",
         passwd: ""
@@ -26,9 +26,25 @@ function Login(){
                 passwd: values.passwd
             })
         })
-        .then(res => res.json())
-        .then(data => console.log(data));
-
+        .then(res => {
+            if(!res.ok){
+                throw new Error("ID/PW invalid");
+            }
+            return res.json();
+        })
+        .then(data => {
+            localStorage.setItem("token", data.token);
+            setStates(prevStates => {
+                return {
+                    menu: "main",
+                    user: values.id
+                };
+            });
+        });
+        setValues({
+            id: "",
+            passwd: ""
+        });
     }
     return (
         <div>

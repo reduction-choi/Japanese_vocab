@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Register(){
+function Register(setStates){
     const [values, setValues] = useState({
         id: "",
         passwd: "",
@@ -29,7 +29,15 @@ function Register(){
             })
         })
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data => {
+            console.log(data);
+            setStates(prevStates => {
+                return {
+                    ...prevStates,
+                    menu: "main"
+                };
+            });
+        });
 
     }
     return (
