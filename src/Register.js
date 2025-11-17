@@ -17,7 +17,7 @@ function Register(setStates){
         });
     }
     const handleClick = (e) => {
-        fetch("https://japanese-vocab-backend.onrender.com/api/register", {
+        fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +38,6 @@ function Register(setStates){
                 };
             });
         });
-
     }
     return (
         <div>

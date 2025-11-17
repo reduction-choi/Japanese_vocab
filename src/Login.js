@@ -16,7 +16,7 @@ function Login({setStates}){
         });
     }
     const handleClick = (e) => {
-        fetch("https://japanese-vocab-backend.onrender.com/api/login", {
+        fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

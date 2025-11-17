@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if(token){
-      fetch("https://japanese-vocab-backend.onrender.com/api/verify", {
+      fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/verify", {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`
@@ -26,7 +26,7 @@ function App() {
         return res.json()
       })
       .then(data => {
-          console.log(data);
+          console.log(data.user.id);
           setStates(prevStates => {
             return {
               ...prevStates,
@@ -62,7 +62,7 @@ function App() {
           return <Register setStates={setStates}/>
         }
         else{
-          return <Somepage/>
+          return <Somepage states={states}/>
         }
       })()}
     </div>
