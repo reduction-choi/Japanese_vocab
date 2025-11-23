@@ -7,7 +7,7 @@ function Somepage({states}){
     const [vocab, setVocab] = useState([]);
     const [level, setLevel] = useState(0);
     useEffect(() => {
-        fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/loadvocab",{
+        fetch("https://japanese-vocab-backend.onrender.com/api/loadvocab",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

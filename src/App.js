@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if(token){
-      fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/verify", {
+      fetch("https://japanese-vocab-backend.onrender.com/api/verify", {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`
