@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "./Login.scss";
 function Login({setStates}){
     const [values, setValues] = useState({
         id: "",
@@ -36,7 +36,7 @@ function Login({setStates}){
             localStorage.setItem("token", data.token);
             setStates(prevStates => {
                 return {
-                    menu: "main",
+                    menu: "study",
                     user: values.id
                 };
             });
@@ -45,13 +45,18 @@ function Login({setStates}){
             id: "",
             passwd: ""
         });
-    }
+    };
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          handleClick(); // Trigger the button's action
+        }
+    };
     return (
-        <div>
+        <div className="login-container">
             <h1>ID: </h1>
-            <input type="text" name="id" value={values.id} onChange={handleChange} />
+            <input type="text" name="id" value={values.id} onChange={handleChange} onKeyDown={handleKeyDown}/>
             <h1>PW: </h1>
-            <input type="text" name="passwd" value={values.passwd} onChange={handleChange} />
+            <input type="password" name="passwd" value={values.passwd} onChange={handleChange} onKeyDown={handleKeyDown}/>
             <button onClick={handleClick}>Login</button>
         </div>
     )

@@ -1,9 +1,10 @@
 import { useState } from "react";
-
+import "./Register.scss"
 function Register(setStates){
     const [values, setValues] = useState({
         id: "",
         passwd: "",
+        //TODO: type password twice
         number: 0
     });
 
@@ -40,11 +41,11 @@ function Register(setStates){
         });
     }
     return (
-        <div>
+        <div className="register-container">
             <h1>ID: </h1>
             <input type="text" name="id" value={values.title} onChange={handleChange} />
             <h1>PW: </h1>
-            <input type="text" name="passwd" value={values.passwd} onChange={handleChange} />
+            <input type="password" name="passwd" value={values.passwd} onChange={handleChange} />
             <h1>SOME_NUMBER: </h1>
             <input type="text" name="number" value={values.number} onChange={handleChange} />
             <button onClick={handleClick}>Register</button>

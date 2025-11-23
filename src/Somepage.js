@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import DropdownComponent from "./DropdownComponent";
+import './Somepage.scss';
 
 function Somepage({states}){
     const [vocab_idx, setVocab_idx] = useState(0);
     const [vocab, setVocab] = useState([]);
+    const [level, setLevel] = useState(0);
     useEffect(() => {
         fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/loadvocab",{
             method: "POST",
@@ -10,17 +13,25 @@ function Somepage({states}){
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                id: states.user
+                id: states.user,
+                level: level
             })
         })
-        .then(res => res.json())
+        .then(res => {
+            if(!res.ok){
+                throw new Error("Internal Server Error");
+            }
+            return res.json()
+        })
         .then(data => {
-            data.message.sort(() => Math.random() - 0.5);
-            setVocab(prev => {
-                return data.message;
-            });
+            if(data.success === true){
+                data.message.sort(() => Math.random() - 0.5);
+                setVocab(prev => {
+                    return data.message;
+                });
+            }
         });
-    }, [states.user]);
+    }, [states.user, level]);
     const mark_correct = () => {
         setVocab(prevVocab => {
             let newVocab = JSON.parse(JSON.stringify(prevVocab));
@@ -75,20 +86,21 @@ function Somepage({states}){
         });
     }
     return (
-        <div>
-            {vocab.length === 0 ? <div/> : <div>
+        <div className="somepage-container">
+            <DropdownComponent setLevel={setLevel}></DropdownComponent>
+            {vocab.length === 0 ? <div/> : <div className="vocab-card">
                 <h1>{vocab[vocab_idx].hiragana}</h1>
                 <h1>{vocab[vocab_idx].meaning}</h1>
-                <div>
+                <div className="answer-buttons">
                     <button onClick={mark_correct}>정답</button>
                     <button onClick={mark_incorrect}>오답</button>
                 </div>
-                <div>
-                    <button onClick={inc_idx}>다음</button>
-                    <h1>{vocab_idx}</h1>
+                <div className="navigation-buttons">
                     <button onClick={dec_idx}>이전</button>
+                    <h1>{vocab_idx}</h1>
+                    <button onClick={inc_idx}>다음</button>
                 </div>
-                <button onClick={save}>저장</button>
+                <button className="save-button" onClick={save}>저장</button>
             </div>}
         </div>
     )

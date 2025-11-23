@@ -1,3 +1,4 @@
+import './Menu.scss';
 function Menu({states, setStates}){
     const handleClick = (e) => {
         setStates(prevStates => {
@@ -18,10 +19,10 @@ function Menu({states, setStates}){
         });
     }
     return (
-        <div>
+        <div className='menu-container'>
             <button name="main" onClick={handleClick}>main</button>
             {states.user === null ? <button name="login" onClick={handleClick}>login</button> : <button name="logout" onClick={handleLogout}>logout</button>}
-            {states.user === null ? <button name="register" onClick={handleClick}>register</button> : <div/>}
+            {states.user === null ? <button name="register" onClick={handleClick}>register</button> : ""}
             <button name="study" onClick={handleClick}>GO STUDYING!</button>
         </div>
     )

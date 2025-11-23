@@ -61,7 +61,7 @@ function App() {
         else if(states.menu === "register"){
           return <Register setStates={setStates}/>
         }
-        else{
+        else if(states.menu === "study"){
           return <Somepage states={states}/>
         }
       })()}
