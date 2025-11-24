@@ -29,6 +29,9 @@ function Somepage({states}){
                 setVocab(prev => {
                     return data.message;
                 });
+                setVocab_idx(prev => {
+                    return 0;
+                });
             }
         });
     }, [states.user, level]);

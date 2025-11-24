@@ -4,8 +4,7 @@ function Register(setStates){
     const [values, setValues] = useState({
         id: "",
         passwd: "",
-        //TODO: type password twice
-        number: 0
+        passwd_chk: "",
     });
 
     const handleChange = (e) => {
@@ -18,36 +17,47 @@ function Register(setStates){
         });
     }
     const handleClick = (e) => {
-        fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                id: values.id,
-                passwd: values.passwd,
-                number: parseInt(values.number)
+        if(values.passwd === values.passwd_chk){
+            fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: values.id,
+                    passwd: values.passwd
+                })
             })
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            setStates(prevStates => {
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setStates(prevStates => {
+                    return {
+                        ...prevStates,
+                        menu: "main"
+                    };
+                });
+            });
+        }
+        else{
+            alert("비밀번호가 일치하지 않습니다.");
+            setValues(prev => {
                 return {
-                    ...prevStates,
-                    menu: "main"
+                    id: "",
+                    passwd: "",
+                    passwd_chk: ""
                 };
             });
-        });
+        }
     }
     return (
         <div className="register-container">
             <h1>ID: </h1>
-            <input type="text" name="id" value={values.title} onChange={handleChange} />
+            <input type="text" name="id" value={values.id} onChange={handleChange} />
             <h1>PW: </h1>
             <input type="password" name="passwd" value={values.passwd} onChange={handleChange} />
-            <h1>SOME_NUMBER: </h1>
-            <input type="text" name="number" value={values.number} onChange={handleChange} />
+            <h1>RETYPE PW: </h1>
+            <input type="password" name="passwd_chk" value={values.passwd_chk} onChange={handleChange} />
             <button onClick={handleClick}>Register</button>
         </div>
     )
