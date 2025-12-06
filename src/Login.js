@@ -28,7 +28,7 @@ function Login({setStates}){
         })
         .then(res => {
             if(!res.ok){
-                throw new Error("ID/PW invalid");
+                alert("ID/PW invalid");
             }
             return res.json();
         })

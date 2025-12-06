@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Register.scss"
-function Register(setStates){
+function Register({setStates}){
     const [values, setValues] = useState({
         id: "",
         passwd: "",
@@ -31,12 +31,18 @@ function Register(setStates){
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setStates(prevStates => {
-                    return {
-                        ...prevStates,
-                        menu: "main"
-                    };
-                });
+                if(data.success === true){
+                    setStates(prevStates => {
+                        return {
+                            ...prevStates,
+                            menu: "main"
+                        };
+                    });
+                    alert(data.message);
+                }
+                else{
+                    alert(data.message);
+                }
             });
         }
         else{

@@ -92,8 +92,10 @@ function Somepage({states}){
         <div className="somepage-container">
             <DropdownComponent setLevel={setLevel}></DropdownComponent>
             {vocab.length === 0 ? <div/> : <div className="vocab-card">
+                <h1>{vocab[vocab_idx].character}</h1>
                 <h1>{vocab[vocab_idx].hiragana}</h1>
                 <h1>{vocab[vocab_idx].meaning}</h1>
+                <h3>[{vocab[vocab_idx].pronounciation}]</h3>
                 <div className="answer-buttons">
                     <button onClick={mark_correct}>정답</button>
                     <button onClick={mark_incorrect}>오답</button>

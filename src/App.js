@@ -5,6 +5,7 @@ import Main from './Main';
 import Login from './Login';
 import Register from './Register';
 import Somepage from './Somepage';
+import Mypage from './Mypage';
 function App() {
   const [states, setStates] = useState({
       menu: "main",
@@ -63,6 +64,9 @@ function App() {
         }
         else if(states.menu === "study"){
           return <Somepage states={states}/>
+        }
+        else if(states.menu === "mypage"){
+          return <Mypage states={states} setStates={setStates}/>
         }
       })()}
     </div>
