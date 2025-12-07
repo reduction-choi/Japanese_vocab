@@ -5,15 +5,17 @@ import Main from './Main';
 import Login from './Login';
 import Register from './Register';
 import Somepage from './Somepage';
+import Mypage from './Mypage';
+import Loading from './Loading';
 function App() {
   const [states, setStates] = useState({
-      menu: "main",
+      menu: "loading",
       user: null
     });
   useEffect(() => {
     const token = localStorage.getItem("token");
     if(token){
-      fetch("https://japanese-vocab-backend.onrender.com/api/verify", {
+      fetch(process.env.REACT_APP_API_URL + "/api/verify", {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`
@@ -30,7 +32,8 @@ function App() {
           setStates(prevStates => {
             return {
               ...prevStates,
-              user: data.user.id
+              user: data.user.id,
+              menu: "main"
             }
           });
       })
@@ -39,18 +42,24 @@ function App() {
         setStates(prevStates => {
           return {
             ...prevStates,
-            user: null
+            user: null,
+            menu: "main"
           }
         });
       });
     }
     else{
-      return;
+      setStates(prevStates => {
+        return {
+          ...prevStates,
+          menu: "main"
+        }
+      });
     }
   }, []);
   return (
     <div>
-      <Menu states={states} setStates={setStates}/>
+      {states.menu === "loading" ? "" : <Menu states={states} setStates={setStates}/>}
       {(()=>{
         if(states.menu === "main"){
           return <Main states={states}/>
@@ -64,6 +73,13 @@ function App() {
         else if(states.menu === "study"){
           return <Somepage states={states}/>
         }
+        else if(states.menu === "mypage"){
+          return <Mypage states={states} setStates={setStates}/>
+        }
+        else if(states.menu === "loading"){
+          return <Loading/>
+        }
+        
       })()}
     </div>
   );

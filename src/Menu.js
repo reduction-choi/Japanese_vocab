@@ -22,7 +22,7 @@ function Menu({states, setStates}){
         <div className='menu-container'>
             <button name="main" onClick={handleClick}>main</button>
             {states.user === null ? <button name="login" onClick={handleClick}>login</button> : <button name="logout" onClick={handleLogout}>logout</button>}
-            {states.user === null ? <button name="register" onClick={handleClick}>register</button> : ""}
+            {states.user === null ? <button name="register" onClick={handleClick}>register</button> : <button name="mypage" onClick={handleClick}>mypage</button>}
             <button name="study" onClick={handleClick}>GO STUDYING!</button>
         </div>
     )

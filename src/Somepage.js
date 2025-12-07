@@ -7,7 +7,7 @@ function Somepage({states}){
     const [vocab, setVocab] = useState([]);
     const [level, setLevel] = useState(0);
     useEffect(() => {
-        fetch("https://japanese-vocab-backend.onrender.com/api/loadvocab",{
+        fetch(process.env.REACT_APP_API_URL + "/api/loadvocab",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -28,6 +28,9 @@ function Somepage({states}){
                 data.message.sort(() => Math.random() - 0.5);
                 setVocab(prev => {
                     return data.message;
+                });
+                setVocab_idx(prev => {
+                    return 0;
                 });
             }
         });
@@ -89,8 +92,10 @@ function Somepage({states}){
         <div className="somepage-container">
             <DropdownComponent setLevel={setLevel}></DropdownComponent>
             {vocab.length === 0 ? <div/> : <div className="vocab-card">
+                <h1>{vocab[vocab_idx].character}</h1>
                 <h1>{vocab[vocab_idx].hiragana}</h1>
                 <h1>{vocab[vocab_idx].meaning}</h1>
+                <h3>[{vocab[vocab_idx].pronounciation}]</h3>
                 <div className="answer-buttons">
                     <button onClick={mark_correct}>정답</button>
                     <button onClick={mark_incorrect}>오답</button>

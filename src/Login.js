@@ -16,7 +16,7 @@ function Login({setStates}){
         });
     }
     const handleClick = (e) => {
-        fetch("https://japanese-vocab-backend.onrender.com/api/login", {
+        fetch(process.env.REACT_APP_API_URL + "/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -28,9 +28,12 @@ function Login({setStates}){
         })
         .then(res => {
             if(!res.ok){
-                throw new Error("ID/PW invalid");
+                alert("ID/PW invalid");
+                throw new Error("error");
             }
-            return res.json();
+            else{
+                return res.json();
+            }
         })
         .then(data => {
             localStorage.setItem("token", data.token);
@@ -40,6 +43,9 @@ function Login({setStates}){
                     user: values.id
                 };
             });
+        })
+        .catch(() => {
+            console.log("error");
         });
         setValues({
             id: "",

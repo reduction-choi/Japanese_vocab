@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import Wordlist from "./Wordlist";
 import axios from "axios";
+import { toRomaji } from "wanakana";
 function LoadVocab() {
 const [words, setWords] = useState([]);
   const nextID = useRef(0);
@@ -22,9 +23,11 @@ const [words, setWords] = useState([]);
             console.log(apidata);
             for(const wordinfo of apidata.data["data"]){
                 const object = {
-                meaning: wordinfo["data"]["meanings"]["0"]["meaning"],
-                hiragana: wordinfo["data"]["readings"]["0"]["reading"],
-                id: nextID.currnet
+                  meaning: wordinfo["data"]["meanings"]["0"]["meaning"],
+                  hiragana: wordinfo["data"]["readings"]["0"]["reading"],
+                  character: wordinfo["data"]["characters"],
+                  pronounciation: toRomaji(wordinfo["data"]["readings"]["0"]["reading"]),
+                  id: nextID.currnet
                 };
                 appendWords(object);
             }

@@ -1,5 +1,5 @@
 const WordlistItem = ({word}) => {
-    const {meaning, hiragana, _} = word;
+    const {meaning, hiragana, character, pronounciation,_} = word;
     return (
         <div className="WordlistItem">
             <div>
@@ -7,6 +7,12 @@ const WordlistItem = ({word}) => {
             </div>
             <div>
                 {hiragana}
+            </div>
+            <div>
+                {character}
+            </div>
+            <div>
+                {pronounciation}
             </div>
         </div>
     )
