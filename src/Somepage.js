@@ -7,7 +7,7 @@ function Somepage({states}){
     const [vocab, setVocab] = useState([]);
     const [level, setLevel] = useState(0);
     useEffect(() => {
-        fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/loadvocab",{
+        fetch(process.env.REACT_APP_API_URL + "/api/loadvocab",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

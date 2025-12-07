@@ -16,7 +16,7 @@ function Login({setStates}){
         });
     }
     const handleClick = (e) => {
-        fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/login", {
+        fetch(process.env.REACT_APP_API_URL + "/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -8,7 +8,7 @@ function Mypage({states, setStates}) {
     });
     const Unregister = () => {
         if(window.confirm("정말로 탈퇴하시겠습니까? (계정 탈퇴 이후에는 계정을 복구할 수 없습니다.)")){
-            fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/unregister", {
+            fetch(process.env.REACT_APP_API_URL + "/api/unregister", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -44,7 +44,7 @@ function Mypage({states, setStates}) {
     };
     const PasswordChange = (e) => {
         if(values.new === values.new_check){
-            fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/changepassword", {
+            fetch(process.env.REACT_APP_API_URL + "/api/changepassword", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
