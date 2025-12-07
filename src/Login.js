@@ -29,8 +29,11 @@ function Login({setStates}){
         .then(res => {
             if(!res.ok){
                 alert("ID/PW invalid");
+                throw new Error("error");
             }
-            return res.json();
+            else{
+                return res.json();
+            }
         })
         .then(data => {
             localStorage.setItem("token", data.token);
@@ -40,6 +43,9 @@ function Login({setStates}){
                     user: values.id
                 };
             });
+        })
+        .catch(() => {
+            console.log("error");
         });
         setValues({
             id: "",
