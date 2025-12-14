@@ -14,7 +14,8 @@ function Somepage({states}){
             },
             body: JSON.stringify({
                 id: states.user,
-                level: level
+                level: level,
+                num_vocab: 50
             })
         })
         .then(res => {
@@ -33,7 +34,11 @@ function Somepage({states}){
                     return 0;
                 });
             }
-        });
+            else{
+                alert(data.message);
+            }
+        })
+        .catch(e => console.log(e));
     }, [states.user, level]);
     const mark_correct = () => {
         setVocab(prevVocab => {
@@ -96,6 +101,11 @@ function Somepage({states}){
                 <h1>{vocab[vocab_idx].hiragana}</h1>
                 <h1>{vocab[vocab_idx].meaning}</h1>
                 <h3>[{vocab[vocab_idx].pronounciation}]</h3>
+                <div className="vocab-info">
+                    <p>level: {vocab[vocab_idx].level}</p>
+                    <p>correct: {vocab[vocab_idx].num_correct}</p>
+                    <p>incorrect: {vocab[vocab_idx].num_shown - vocab[vocab_idx].num_correct}</p>
+                </div>
                 <div className="answer-buttons">
                     <button onClick={mark_correct}>정답</button>
                     <button onClick={mark_incorrect}>오답</button>

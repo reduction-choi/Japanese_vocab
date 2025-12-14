@@ -24,6 +24,12 @@
       font-size: 18px;
       font-weight: 600;
     }
+    .vocab-info{
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      gap: 12px;
+    }
 
     .answer-buttons,
     .navigation-buttons {
