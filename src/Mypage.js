@@ -79,7 +79,7 @@ function Mypage({states, setStates}) {
         <div className="mypage-container">
             <div className='information'>
                 <h1>내 레벨</h1>
-                <p>todo</p>
+                <p>{states.user.maxLevel}</p>
             </div>
             <div className='password-change'>
                 <h1>이전 비밀번호</h1>

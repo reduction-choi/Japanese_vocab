@@ -12,9 +12,8 @@ function DropdownComponent({setLevel}) {
   return (
     <Dropdown autoClose="outside">
       <DropdownButton id="dropdown-basic-button" onSelect={handleSelect} title="Dropdown button">
-        <Dropdown.Item eventKey={null}>Automatic</Dropdown.Item>
         {levels.map(level => {
-          return <Dropdown.Item eventKey={level}>level {level}</Dropdown.Item>
+          return <Dropdown.Item key={level} eventKey={level}>level {level}</Dropdown.Item>
         })}
       </DropdownButton>
     </Dropdown>

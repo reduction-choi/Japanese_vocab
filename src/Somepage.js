@@ -5,7 +5,7 @@ import './Somepage.scss';
 function Somepage({states}){
     const [vocab_idx, setVocab_idx] = useState(0);
     const [vocab, setVocab] = useState([]);
-    const [level, setLevel] = useState(0);
+    const [level, setLevel] = useState(states.user.maxLevel);
     useEffect(() => {
         fetch(process.env.REACT_APP_API_URL + "/api/loadvocab",{
             method: "POST",
@@ -13,9 +13,9 @@ function Somepage({states}){
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                id: states.user,
+                id: states.user.username,
                 level: level,
-                num_vocab: 50
+                num_vocab: 10
             })
         })
         .then(res => {
@@ -26,7 +26,7 @@ function Somepage({states}){
         })
         .then(data => {
             if(data.success === true){
-                data.message.sort(() => Math.random() - 0.5);
+                //data.message.sort(() => Math.random() - 0.5);
                 setVocab(prev => {
                     return data.message;
                 });
@@ -61,10 +61,21 @@ function Somepage({states}){
     }
     const inc_idx = () => {
         setVocab_idx(prevIdx => {
-            if(prevIdx + 1 < vocab.length)
+            if(prevIdx + 1 < vocab.length && prevIdx > vocab.length - 5){
+                extendVocab();
+                save([vocab[prevIdx]]);
+                console.log(vocab[prevIdx]);
                 return prevIdx + 1;
-            else
+            }
+            else if(prevIdx + 1 < vocab.length){
+                console.log(vocab[prevIdx]);
+                save([vocab[prevIdx]]);
+                return prevIdx + 1;
+            }
+            else{
                 return prevIdx;
+            }
+                
         });
     }
     const dec_idx = () => {
@@ -75,15 +86,51 @@ function Somepage({states}){
                 return prevIdx;
         });
     }
-    const save = () => {
-        fetch("https://super-space-zebra-6666vj9gjqvcjx7-3001.app.github.dev/api/savevocab",{
+    const extendVocab = () => {
+        console.log("extend called");
+        fetch(process.env.REACT_APP_API_URL + "/api/loadvocab",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                id: states.user,
-                vocabs: vocab
+                id: states.user.username,
+                level: level,
+                num_vocab: 10
+            })
+        })
+        .then(res => {
+            if(!res.ok){
+                throw new Error("Internal Server Error");
+            }
+            return res.json()
+        })
+        .then(data => {
+            if(data.success === true){
+                //data.message.sort(() => Math.random() - 0.5);
+                setVocab(prev => {
+                    return prev.concat(data.message);
+                });
+                // setVocab_idx(prev => {
+                //     return 0;
+                // });
+            }
+            else{
+                alert(data.message);
+            }
+        })
+        .catch(e => console.log(e));
+    }
+    const save = (vocabList) => {
+        console.log(vocabList);
+        fetch(process.env.REACT_APP_API_URL + "/api/savevocab",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: states.user.username,
+                vocabs: vocabList
             })
         })
         .then(res => res.json())
@@ -112,10 +159,10 @@ function Somepage({states}){
                 </div>
                 <div className="navigation-buttons">
                     <button onClick={dec_idx}>이전</button>
-                    <h1>{vocab_idx}</h1>
+                    <h1>{vocab_idx + 1}</h1>
                     <button onClick={inc_idx}>다음</button>
                 </div>
-                <button className="save-button" onClick={save}>저장</button>
+                <button className="save-button" onClick={() => save(vocab)}>저장</button>
             </div>}
         </div>
     )

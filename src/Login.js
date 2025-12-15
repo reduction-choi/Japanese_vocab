@@ -40,7 +40,7 @@ function Login({setStates}){
             setStates(prevStates => {
                 return {
                     menu: "study",
-                    user: values.id
+                    user: data.user
                 };
             });
         })

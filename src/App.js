@@ -28,11 +28,11 @@ function App() {
         return res.json()
       })
       .then(data => {
-          console.log(data.user.id);
+          console.log(data.user.user);
           setStates(prevStates => {
             return {
               ...prevStates,
-              user: data.user.id,
+              user: data.user.user,
               menu: "main"
             }
           });

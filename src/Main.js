@@ -15,7 +15,7 @@ function Main({states}){
                     return <h1>Login First, Please!</h1>
                 }
                 else{
-                    return <h1>Welcome! {states.user}</h1>
+                    return <h1>Welcome! {states.user.username}</h1>
                 }
             })()}
         </div>
