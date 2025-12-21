@@ -2,8 +2,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function DropdownComponent({setLevel}) {
-  const levels = [...Array(60).keys()].map(i=> i+1);
+function DropdownComponent({setLevel, states}) {
+  const levels = [...Array(states.user.maxLevel).keys()].map(i=> i+1);
   const handleSelect = (key) => {
     setLevel(prev => {
       return key;

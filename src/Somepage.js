@@ -15,7 +15,7 @@ function Somepage({states}){
             body: JSON.stringify({
                 id: states.user.username,
                 level: level,
-                num_vocab: 10
+                num_vocab: 20
             })
         })
         .then(res => {
@@ -140,9 +140,33 @@ function Somepage({states}){
             }
         });
     }
+    const levelUp = () => {
+        fetch(process.env.REACT_APP_API_URL + "/api/levelUp",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: states.user.username
+            })
+        })
+        .then(res => {
+            if(!res.ok){
+                throw new Error("Internal Server Error");
+            }
+            return res.json()
+        })
+        .then(data => {
+            alert(data.message);
+        })
+        .catch(e => console.log(e));
+    }
     return (
         <div className="somepage-container">
-            <DropdownComponent setLevel={setLevel}></DropdownComponent>
+            <div className="somepage-header">
+                <DropdownComponent setLevel={setLevel} states={states}></DropdownComponent>
+                <button onClick={levelUp}>levelUp</button>
+            </div>
             {vocab.length === 0 ? <div/> : <div className="vocab-card">
                 <h1>{vocab[vocab_idx].character}</h1>
                 <h1>{vocab[vocab_idx].hiragana}</h1>

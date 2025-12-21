@@ -50,7 +50,7 @@ function Mypage({states, setStates}) {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    id: states.user,
+                    id: states.user.username,
                     original_passwd: values.original,
                     new_passwd: values.new
                 })
@@ -80,6 +80,24 @@ function Mypage({states, setStates}) {
             <div className='information'>
                 <h1>내 레벨</h1>
                 <p>{states.user.maxLevel}</p>
+            </div>
+            <div className='criteria-change'>
+                <label>
+                레벨 기준: 
+                <input type="text" name="original" value={values.original} onChange={handleChange} />
+                중
+                <input type="text" name="new" value={values.new} onChange={handleChange} />
+                회 이상
+
+                <br/>
+                단어 기준:
+                <input type="text" name="new_check" value={values.new_check} onChange={handleChange} />
+                중
+                <input type="text" name="new_check" value={values.new_check} onChange={handleChange} />
+                회 이상
+                </label>
+                <br/>
+                <button onClick={PasswordChange}>레벨업 기준 변경</button>
             </div>
             <div className='password-change'>
                 <h1>이전 비밀번호</h1>
