@@ -157,6 +157,9 @@ function Somepage({states}){
             return res.json()
         })
         .then(data => {
+            if(data.success === true){
+                window.location.reload();
+            }
             alert(data.message);
         })
         .catch(e => console.log(e));
