@@ -4,7 +4,11 @@ function Mypage({states, setStates}) {
     const [values, setValues] = useState({
         original: "",
         new: "",
-        new_check: ""
+        new_check: "",
+        level_criteria_shown: states.user.level_criteria.num_shown,
+        level_criteria_correct: states.user.level_criteria.num_correct,
+        vocab_criteria_shown: states.user.vocab_criteria.num_shown,
+        vocab_criteria_correct: states.user.vocab_criteria.num_correct,
     });
     const Unregister = () => {
         if(window.confirm("정말로 탈퇴하시겠습니까? (계정 탈퇴 이후에는 계정을 복구할 수 없습니다.)")){
@@ -58,10 +62,12 @@ function Mypage({states, setStates}) {
             .then(res => res.json())
             .then(data => {
                 if(data.success === true){
+                    localStorage.removeItem("token");
                     setStates(prevStates => {
                         return {
                             ...prevStates,
-                            menu: "main"
+                            menu: "main",
+                            user: null
                         };
                     });
                 }
@@ -75,6 +81,39 @@ function Mypage({states, setStates}) {
             alert("비밀번호 확인이 일치하지 않습니다.");
         }
     };
+    const CriteriaChange = (e) => {
+        fetch(process.env.REACT_APP_API_URL + "/api/changecriteria", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: states.user.username,
+                new_criteria: {
+                    level_criteria_shown: values.level_criteria_shown,
+                    level_criteria_correct: values.level_criteria_correct,
+                    vocab_criteria_shown: values.vocab_criteria_shown,
+                    vocab_criteria_correct: values.vocab_criteria_correct
+                }
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success === true){
+                setStates(prevStates => {
+                    return {
+                        ...prevStates,
+                        menu: "main"
+                    };
+                });
+                window.location.reload();
+            }
+            alert(data.message);
+        })
+        .catch(() => {
+            console.log("error");
+        });
+    };
     return (
         <div className="mypage-container">
             <div className='information'>
@@ -84,20 +123,20 @@ function Mypage({states, setStates}) {
             <div className='criteria-change'>
                 <label>
                 레벨 기준: 
-                <input type="text" name="original" value={values.original} onChange={handleChange} />
+                <input type="text" name="level_criteria_shown" value={values.level_criteria_shown} onChange={handleChange} />
                 중
-                <input type="text" name="new" value={values.new} onChange={handleChange} />
+                <input type="text" name="level_criteria_correct" value={values.level_criteria_correct} onChange={handleChange} />
                 회 이상
 
                 <br/>
                 단어 기준:
-                <input type="text" name="new_check" value={values.new_check} onChange={handleChange} />
+                <input type="text" name="vocab_criteria_shown" value={values.vocab_criteria_shown} onChange={handleChange} />
                 중
-                <input type="text" name="new_check" value={values.new_check} onChange={handleChange} />
+                <input type="text" name="vocab_criteria_correct" value={values.vocab_criteria_correct} onChange={handleChange} />
                 회 이상
                 </label>
                 <br/>
-                <button onClick={PasswordChange}>레벨업 기준 변경</button>
+                <button onClick={CriteriaChange}>레벨업 기준 변경</button>
             </div>
             <div className='password-change'>
                 <h1>이전 비밀번호</h1>
