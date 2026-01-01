@@ -4,7 +4,7 @@ import Menu from './Menu';
 import Main from './Main';
 import Login from './Login';
 import Register from './Register';
-import Somepage from './Somepage';
+import Studypage from './Studypage';
 import Mypage from './Mypage';
 import Loading from './Loading';
 function App() {
@@ -28,7 +28,7 @@ function App() {
         return res.json()
       })
       .then(data => {
-          console.log(data.user);
+          // console.log(data.user);
           setStates(prevStates => {
             return {
               ...prevStates,
@@ -71,7 +71,7 @@ function App() {
           return <Register setStates={setStates}/>
         }
         else if(states.menu === "study"){
-          return <Somepage states={states}/>
+          return <Studypage states={states}/>
         }
         else if(states.menu === "mypage"){
           return <Mypage states={states} setStates={setStates}/>
