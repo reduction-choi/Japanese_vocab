@@ -4,13 +4,26 @@
   margin: 0 auto;
   padding: 20px;
 
-  .somepage-header{
+  .somepage-header {
     display: flex;
-    flex-direction: horizontal;
-    gap: 20px;
-    text-align: center;
-    
-    button{
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+
+    .range-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 500;
+
+      span {
+        white-space: nowrap;
+      }
+    }
+
+    button {
       padding: 10px 18px;
       border: none;
       border-radius: 10px;
@@ -34,17 +47,29 @@
     flex-direction: column;
     gap: 20px;
     text-align: center;
+    justify-content: center;
 
-    h1 {
-      margin: 0;
-      font-size: 28px;
-      font-weight: 600;
+    .vocab{
+      background: #ffffff;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+      justify-content: center;
+      gap: 12px;
+      
+      h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 600;
+      }
+      h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
     }
-    h3 {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 600;
-    }
+    
     .vocab-info{
       display: flex;
       justify-content: center;
