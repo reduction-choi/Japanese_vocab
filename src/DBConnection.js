@@ -2,11 +2,11 @@ function DBConnection(){
     async function connect() {
         try {
             console.log("working");
-            fetch("https://japanese-vocab-4eoh.onrender.com/api/hello")
+            fetch("https://integrated-backend.onrender.com/api/japanese/hello")
                 .then(res => res.json())
                 .then(data => console.log(data));
 
-            fetch("https://japanese-vocab-4eoh.onrender.com/api/connect")
+            fetch("https://integrated-backend.onrender.com/api/japanese/connect")
                 .then(res => res.json())
                 .then(data => console.log(data));
         } catch(e) {

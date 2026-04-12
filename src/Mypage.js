@@ -12,7 +12,7 @@ function Mypage({ states, setStates }) {
     });
     const Unregister = () => {
         if (window.confirm("정말로 탈퇴하시겠습니까? (계정 탈퇴 이후에는 계정을 복구할 수 없습니다.)")) {
-            fetch(process.env.REACT_APP_API_URL + "/api/unregister", {
+            fetch(process.env.REACT_APP_API_URL + "/api/japanese/unregister", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -48,7 +48,7 @@ function Mypage({ states, setStates }) {
     };
     const PasswordChange = (e) => {
         if (values.new === values.new_check) {
-            fetch(process.env.REACT_APP_API_URL + "/api/changepassword", {
+            fetch(process.env.REACT_APP_API_URL + "/api/japanese/changepassword", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -82,7 +82,7 @@ function Mypage({ states, setStates }) {
         }
     };
     const CriteriaChange = (e) => {
-        fetch(process.env.REACT_APP_API_URL + "/api/changecriteria", {
+        fetch(process.env.REACT_APP_API_URL + "/api/japanese/changecriteria", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

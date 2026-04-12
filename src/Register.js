@@ -18,7 +18,7 @@ function Register({setStates}){
     }
     const handleClick = (e) => {
         if(values.passwd === values.passwd_chk){
-            fetch(process.env.REACT_APP_API_URL + "/api/register", {
+            fetch(process.env.REACT_APP_API_URL + "/api/japanese/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -12,7 +12,7 @@ function Studypage({ states }) {
     });
     useEffect(() => {
         if (level.min <= level.max) {
-            fetch(process.env.REACT_APP_API_URL + "/api/loadvocab", {
+            fetch(process.env.REACT_APP_API_URL + "/api/japanese/loadvocab", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -50,7 +50,7 @@ function Studypage({ states }) {
         }
     }, [states.user, level]);
     useEffect(() => {
-        fetch(process.env.REACT_APP_API_URL + "/api/changesetting", {
+        fetch(process.env.REACT_APP_API_URL + "/api/japanese/changesetting", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -131,7 +131,7 @@ function Studypage({ states }) {
         });
     }
     const extendVocab = () => {
-        fetch(process.env.REACT_APP_API_URL + "/api/loadvocab", {
+        fetch(process.env.REACT_APP_API_URL + "/api/japanese/loadvocab", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -165,7 +165,7 @@ function Studypage({ states }) {
             .catch(e => console.log(e));
     }
     const save = (vocabList) => {
-        fetch(process.env.REACT_APP_API_URL + "/api/savevocab", {
+        fetch(process.env.REACT_APP_API_URL + "/api/japanese/savevocab", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -177,7 +177,7 @@ function Studypage({ states }) {
         });
     }
     const levelUp = () => {
-        fetch(process.env.REACT_APP_API_URL + "/api/levelUp", {
+        fetch(process.env.REACT_APP_API_URL + "/api/japanese/levelUp", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
